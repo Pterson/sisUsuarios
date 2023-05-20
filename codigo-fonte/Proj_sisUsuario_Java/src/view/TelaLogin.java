@@ -9,6 +9,8 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.WindowConstants;
 
+import controller.ControladorTelaLogin;
+
 public class TelaLogin {
 
 	public void iniciarTelaLogin() {
@@ -59,6 +61,9 @@ public class TelaLogin {
 
 		frameTelaLogin.add(panelTelaLogin);
 		frameTelaLogin.setVisible(true);
+		
+		ControladorTelaLogin controladorTelaLogin = new ControladorTelaLogin(textUsuario, textSenha, textTipo);
+		controladorTelaLogin.actionPerformed(null); 
 
 
 	}

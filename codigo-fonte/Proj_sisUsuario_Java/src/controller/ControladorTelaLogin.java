@@ -3,19 +3,31 @@ package controller;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.JFrame;
 import javax.swing.JTextField;
 
 public class ControladorTelaLogin implements ActionListener {
 		
-	JTextField textRespostaRecebida;
-	JFrame frameRecebido;
+	JTextField textUsuarioRecebida;
+	JTextField textSenhaRecebida;
+	JTextField textTipoRecebida;
 	
+
+
+	public ControladorTelaLogin(JTextField textUsuarioRecebida, JTextField textSenhaRecebida,
+			JTextField textTipoRecebida) {
+
+		this.textUsuarioRecebida = textUsuarioRecebida;
+		this.textSenhaRecebida = textSenhaRecebida;
+		this.textTipoRecebida = textTipoRecebida;
+	}
+
+
+
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		
-		// TODO Auto-generated method stub
-		
+		System.out.println("TESTEOU");
+
 	}
 	
 
