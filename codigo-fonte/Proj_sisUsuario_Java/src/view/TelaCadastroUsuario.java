@@ -1,60 +1,89 @@
 package view;
 
+import java.awt.GridLayout;
+
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.WindowConstants;
 
+import controller.ControladorCadastroUsuario;
+import model.Usuario;
+
 public class TelaCadastroUsuario {
 	
-	public void telaCadastroUsuario() {
+	public void cadastrarUsuario(Usuario usuarioLogado, JFrame frameMenuUsuario) {
 	
-	String matricula = "Informe a matrícula: ";
+//	String matricula = "Informe a matrícula: ";
 	String nome = "Informe o nome: ";
-	String tipoUsuario = "Informe o acesso: ";
+	String email = "Informe o email: ";
+	String tipoUsuario = "Informe o tipo de acesso: ";
 	
 	
-	JFrame frameCadastroUsuario = new JFrame();
+//***********************************************************************************	
+	JFrame frameCadastrarUsuario = new JFrame();
 	
-	frameCadastroUsuario.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-	frameCadastroUsuario.setSize(330, 300);
-	frameCadastroUsuario.setTitle("TELA DE GERENCIA DE USUARIOS");
+	frameCadastrarUsuario.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+	frameCadastrarUsuario.setSize(330, 300);
+	frameCadastrarUsuario.setTitle("TELA DE CADASTRO DE USUARIOS");
 	
 	
-	JPanel panelCadastroUsuario = new JPanel();
-
-//__MATRICULA	
+	JPanel panelCadastrarUsuario = new JPanel();
+	GridLayout grid = new GridLayout(0,1);
+	panelCadastrarUsuario.setLayout(grid);	
+//***********************************************************************************
+	
+	
+/*//__MATRICULA	
 	JLabel labelMatricula = new JLabel(matricula);
-	panelCadastroUsuario.add(labelMatricula);
+	panelCadastrarUsuario.add(labelMatricula);
 	
 	JTextField textMatricula = new JTextField();
-	panelCadastroUsuario.add(textMatricula);
-	
+	panelCadastrarUsuario.add(textMatricula);
+*/	
 	
 //__NOME
 	JLabel labelNome = new JLabel(nome);
-	panelCadastroUsuario.add(labelNome);
+	panelCadastrarUsuario.add(labelNome);
 	
 	JTextField textNome = new JTextField();
-	panelCadastroUsuario.add(textNome);
+	panelCadastrarUsuario.add(textNome);
+	
+//__EMAIL
+	JLabel labelEmail = new JLabel(email);
+	panelCadastrarUsuario.add(labelEmail);
+		
+	JTextField textEmail = new JTextField();
+	panelCadastrarUsuario.add(textEmail);
 	
 //__TIPO
 	JLabel labelTipoUsuario = new JLabel(tipoUsuario);
-	panelCadastroUsuario.add(labelTipoUsuario);
+	panelCadastrarUsuario.add(labelTipoUsuario);
 	
 	JTextField textTipoUsuario = new JTextField();
-	panelCadastroUsuario.add(textTipoUsuario);
+	panelCadastrarUsuario.add(textTipoUsuario);
 	
 
 //__BOTÃO
+	JButton botaoEnviar = new JButton("ENVIAR");
+	panelCadastrarUsuario.add(botaoEnviar);
 	
+	JButton botaoSair = new JButton("VOLTAR");
+	panelCadastrarUsuario.add(botaoSair );
 	
+//__ADD FRAME AO PANEL	
+	frameCadastrarUsuario.add(panelCadastrarUsuario);
+	frameCadastrarUsuario.setVisible(true);
+		
 	
+//__CRIAÇÃO DO OBJETO Criação de uma instância de ControladorCadastrarUsuario E ATRIBUINDO AS VARIÁVEIS
+	ControladorCadastroUsuario controladorCadastroUsuario = new ControladorCadastroUsuario(textNome, textEmail, textTipoUsuario, frameMenuUsuario, frameCadastrarUsuario);
 	
-	
-	
-	
+//__ADICIONANDO CONTROLADOR COMO OUVINTE OS BOTÕES botaoEnviar e botaoSair
+	botaoEnviar.addActionListener(controladorCadastroUsuario);
+	botaoSair.addActionListener(controladorCadastroUsuario);	
 	
 	}
 	
