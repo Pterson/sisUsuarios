@@ -8,6 +8,11 @@ import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
 import model.Usuario;
+import repository.RepositorioUsuario;
+import service.GerenciaSessao;
+import view.TelaGerenciaUsuario;
+
+
 
 public class ControladorTelaLogin implements ActionListener {
 		
@@ -33,17 +38,14 @@ public class ControladorTelaLogin implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		
-		Usuario usuarioEncontrado = gerenciaSessao.validaUsuario(textMatriculaRecebido.getText(), textSenhaRecebeido.getText());
+		Usuario usuarioEncontrado = gerenciaSessao.validaUsuario(textMatriculaRecebida.getText(), textSenhaRecebida.getText());
 		
 		if(usuarioEncontrado != null) {
 			
 			JOptionPane.showInternalMessageDialog(null, "Bem Vindo (a) " + usuarioEncontrado.getNome());
 			
-		}
-		
+		}	
 
 	}
-	
-
 
 }

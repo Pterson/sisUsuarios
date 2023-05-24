@@ -8,14 +8,16 @@ import java.util.List;
 
 import javax.swing.JOptionPane;
 
+import connectionFactory.FabricaConexaoBancoDeDados;
 import model.Usuario;
 
-public class UsuarioDao {
+public class DaoUsuario {
 	
 
+	
 	public Boolean persistirUsuario (Usuario usuario) {
 		
-		FabricaConexao fabricaConexao = new FabricaConexao();
+		FabricaConexaoBancoDeDados fabricaConexaoBancoDeDados = new FabricaConexaoBancoDeDados();
 		
 		String sqlComandoInsert = "INSERT INTO tb_usuario (matricula, nome, email, tipo_usuario, senha) VALUES (?, ?, ?, ?, ?)";
 		
@@ -26,7 +28,7 @@ public class UsuarioDao {
 		try {
 			conexaoRecebida = fabricaConexaoBancoDeDados.criarConexaoDb_usuarios();
 			
-			declaracaoComando = (PreparedStatement) conexaoRecebida.preparedStatement(sqlComandoInsert);
+			declaracaoComando = (PreparedStatement) conexaoRecebida.prepareStatement(sqlComandoInsert);
 			
 			declaracaoComando.setString(1, usuario.getMatricula());
 			declaracaoComando.setString(2, usuario.getNome());
@@ -64,9 +66,12 @@ public class UsuarioDao {
 		return true;		
 	}
 	
+	
+	
+	
 	public List<Usuario> retornaListaUsuarioDao() {
 		
-		FabricaConexaoConexaoBancoDeDados fabricaConexaoConexaoBancoDeDados = new FabricaConexaoConexaoBancoDeDados();
+		FabricaConexaoBancoDeDados fabricaConexaoBancoDeDados = new FabricaConexaoBancoDeDados();
 		
 		String comandoSqlBuscar = "SELECT * FROM tb_usuario";
 		
@@ -78,7 +83,7 @@ public class UsuarioDao {
 		List<Usuario> listaUsuario = new ArrayList<>();
 		
 		try {
-			conexaoRecebida = fabricaConexaoConexaoBancoDeDados.criarConexaoDb_usuarios();
+			conexaoRecebida = fabricaConexaoBancoDeDados.criarConexaoDb_usuarios();
 			declaracaoComando = (PreparedStatement)conexaoRecebida.prepareStatement(comandoSqlBuscar);
 			
 			resultadoTabela = declaracaoComando.executeQuery();
@@ -104,4 +109,7 @@ public class UsuarioDao {
 		return listaUsuario;
 		
 	}
+
+
+
 }

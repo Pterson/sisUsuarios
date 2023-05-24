@@ -3,6 +3,9 @@ package repository;
 import java.util.List;
 
 import model.Usuario;
+import persistence.DaoUsuario;
+
+
 
 public class RepositorioUsuario implements InterfaceUsuario {
 	
@@ -17,7 +20,7 @@ public class RepositorioUsuario implements InterfaceUsuario {
 	@Override
 	public List<Usuario> retornaUsuarios() {
 		
-		return daoUsuario.retornarListaUsuarioDao();
+		return daoUsuario.retornaListaUsuarioDao();
 	}
 
 	@Override
