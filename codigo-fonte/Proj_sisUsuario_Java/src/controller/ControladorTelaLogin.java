@@ -3,30 +3,44 @@ package controller;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
+
+import model.Usuario;
 
 public class ControladorTelaLogin implements ActionListener {
 		
-	JTextField textUsuarioRecebida;
+	JTextField textMatriculaRecebida;
 	JTextField textSenhaRecebida;
-	JTextField textTipoRecebida;
+	JFrame frameTelaLoginRecebida;
 	
 
 
-	public ControladorTelaLogin(JTextField textUsuarioRecebida, JTextField textSenhaRecebida,
-			JTextField textTipoRecebida) {
+	public ControladorTelaLogin(JTextField textMatriculaRecebida, JTextField textSenhaRecebida, JFrame frameTelaLogin) {
 
-		this.textUsuarioRecebida = textUsuarioRecebida;
+		this.textMatriculaRecebida = textMatriculaRecebida;
 		this.textSenhaRecebida = textSenhaRecebida;
-		this.textTipoRecebida = textTipoRecebida;
+		this.frameTelaLoginRecebida = frameTelaLogin;
 	}
-
-
+	
+	RepositorioUsuario repositorioUsuario = new RepositorioUsuario();
+	GerenciaSessao gerenciaSessao = new GerenciaSessao();
+	
+	TelaGerenciaUsuario telaGerenciaUsuario = new TelaGerenciaUsuario();
+	
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		
-		System.out.println("TESTEOU");
+		Usuario usuarioEncontrado = gerenciaSessao.validaUsuario(textMatriculaRecebido.getText(), textSenhaRecebeido.getText());
+		
+		if(usuarioEncontrado != null) {
+			
+			JOptionPane.showInternalMessageDialog(null, "Bem Vindo (a) " + usuarioEncontrado.getNome());
+			
+		}
+		
 
 	}
 	

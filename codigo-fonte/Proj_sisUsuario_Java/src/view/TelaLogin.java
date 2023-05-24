@@ -15,9 +15,9 @@ public class TelaLogin {
 
 	public void iniciarTelaLogin() {
 
-		String nome =" USUARIO:";
+		String matricula =" MATRICULA:";
 		String senha =" SENHA:";
-		String tipo = "TIPO DE USUÁRIO: \n1. ADMIN \n2. COMUM";
+//		String tipo = "TIPO DE USUÁRIO: \n1. ADMIN \n2. COMUM";
 
 
 //______CRIA O FRAME
@@ -32,11 +32,11 @@ public class TelaLogin {
 		panelTelaLogin.setLayout(grid);
 
 //______CRIA O LABEL(NOME)
-		JLabel labelNome = new JLabel(nome);
-		panelTelaLogin.add(labelNome);
+		JLabel labelMatricula = new JLabel(matricula);
+		panelTelaLogin.add(labelMatricula);
 //______CRIA O CAMPO DO TEXTO(USUARIO)
-		JTextField textUsuario = new JTextField(10);
-		panelTelaLogin.add(textUsuario);
+		JTextField textMatricula = new JTextField(10);
+		panelTelaLogin.add(textMatricula);
 
 		
 //______JLABEL(SENHA)	
@@ -46,14 +46,14 @@ public class TelaLogin {
 		JTextField textSenha = new JTextField(10);
 		panelTelaLogin.add(textSenha);
 		
-		
+/*		
 //______JLABEL(TIPO DE USUARIO)	
 		JLabel labelTipo = new JLabel(tipo);
 		panelTelaLogin.add(labelTipo);
 //______JTEXT(TIPO DE USUARIO)	
 		JTextField textTipo = new JTextField(10);
 		panelTelaLogin.add(textTipo);			
-		
+*/		
 
 		JButton buttonLogin = new JButton("LOGIN");
 		panelTelaLogin.add(buttonLogin); // Adiciona o botão no panelMenuPrincipal
@@ -62,7 +62,7 @@ public class TelaLogin {
 		frameTelaLogin.add(panelTelaLogin);
 		frameTelaLogin.setVisible(true);
 		
-		ControladorTelaLogin controladorTelaLogin = new ControladorTelaLogin(textUsuario, textSenha, textTipo);
+		ControladorTelaLogin controladorTelaLogin = new ControladorTelaLogin(textMatricula, textSenha, frameTelaLogin);
 		controladorTelaLogin.actionPerformed(null); 
 
 
