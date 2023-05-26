@@ -19,7 +19,7 @@ public class DaoUsuario {
 		
 		FabricaConexaoBancoDeDados fabricaConexaoBancoDeDados = new FabricaConexaoBancoDeDados();
 		
-		String sqlComandoInsert = "INSERT INTO tb_usuario (matricula, nome, email, tipo_usuario, senha) VALUES (?, ?, ?, ?, ?)";
+		String sqlComandoInsert = "INSERT INTO tb_usuarios (matricula, nome, email, tipo_usuario, senha) VALUES (?, ?, ?, ?, ?)";
 		
 		Connection conexaoRecebida = null;
 		PreparedStatement declaracaoComando = null;
@@ -109,7 +109,101 @@ public class DaoUsuario {
 		return listaUsuario;
 		
 	}
+	
+	
+	public boolean deletarUsuario (Usuario usuario) {
+		
+		FabricaConexaoBancoDeDados fabricaConexaoBancoDeDados = new FabricaConexaoBancoDeDados();
+		
+		String comandoSqlDeletar = "DELETE FROM tb_usuario WHERE matricula = ?";
+		
+		Connection conexaoRecebida = null;
+		PreparedStatement declaracaoComando = null;
+		boolean resposta = false;
+		
+		try {
+			conexaoRecebida = fabricaConexaoBancoDeDados.criarConexaoDb_usuarios();
+			
+			declaracaoComando = (PreparedStatement)conexaoRecebida.prepareStatement(comandoSqlDeletar);
+			declaracaoComando.setString(1, usuario.getMatricula());
+			
+			declaracaoComando.execute();
+			resposta = true;
+		
+		} catch (Exception e) {
+			System.err.println(e);
+			System.out.println("ERRO AO DELETAR");
+			JOptionPane.showInternalMessageDialog(null, "VERIFIQUE O BANCO DE DADOS!");
+			resposta = false;
+			
+		} finally {
+			try {
 
-
-
+				if (conexaoRecebida != null) {
+					conexaoRecebida.close();
+				}
+				
+				if(declaracaoComando != null) {
+					declaracaoComando.close();
+				}
+			} catch (Exception e) {
+				System.out.println("ERRO AO FECHAR CONEXÃO!");
+			}
+		}		
+		
+		return resposta;		
+		
+	}
+	
+	
+	public boolean alterarUsuario (Usuario usuario) {
+		
+		FabricaConexaoBancoDeDados fabricaConexaoBancoDeDados = new FabricaConexaoBancoDeDados();
+		
+		String sqlComando = "UPDATE tb_usuario SET matricula = ?, nome = ?, email = ? , tipo_usuario = ?, senha = ? WHERE matricula = ?";
+		
+		Connection conexaoRecebida = null;
+		PreparedStatement declaracaoComando = null;
+		boolean reposta = false;
+		
+		try {
+			conexaoRecebida = fabricaConexaoBancoDeDados.criarConexaoDb_usuarios();
+			
+			declaracaoComando = (PreparedStatement) conexaoRecebida.prepareStatement(sqlComando);
+			
+			declaracaoComando.setString(1, usuario.getMatricula());
+			declaracaoComando.setString(2, usuario.getNome());
+			declaracaoComando.setString(3, usuario.getEmail());
+			declaracaoComando.setString(4, usuario.getTipoUsuario());
+			declaracaoComando.setString(5, usuario.getSenha());
+			declaracaoComando.setString(6, usuario.getMatricula());
+			
+			declaracaoComando.execute();
+			
+			System.out.println("USUARIO REGISTRADO!!");
+			 reposta = true;
+		}catch (Exception erro) {
+			System.err.println(erro);
+			System.out.println("Erro ao registrar");
+			JOptionPane.showInternalMessageDialog(null, "VERIFIQUE O BANCO DE DADOS!");
+			
+		}finally {
+			try {
+				if(conexaoRecebida != null) {
+					conexaoRecebida.close();
+				}
+				
+				if(declaracaoComando != null) {
+					declaracaoComando.close();
+				}
+				
+			} catch (Exception e) {
+				System.out.println("ERRO AO FECHAR CONEXÃO!");
+			}
+		}
+		
+		
+		return false;
+		
+	}
 }

@@ -10,18 +10,21 @@ import persistence.DaoUsuario;
 public class RepositorioUsuario implements InterfaceUsuario {
 	
 	DaoUsuario daoUsuario = new DaoUsuario();
+	
 
 	@Override
 	public boolean salvarUsuario(Usuario usuario) {
 		
 		return daoUsuario.persistirUsuario(usuario);
 	}
+	
 
 	@Override
 	public List<Usuario> retornaUsuarios() {
 		
 		return daoUsuario.retornaListaUsuarioDao();
 	}
+	
 
 	@Override
 	public Usuario buscarUsuario(String matricula) {
@@ -34,5 +37,19 @@ public class RepositorioUsuario implements InterfaceUsuario {
 		
 		return null;
 	}	
+	
+	
+	@Override
+	public boolean deletarUsuario(Usuario usuario) {
+		
+		return daoUsuario.deletarUsuario(usuario);
+	}
+	
+
+	@Override
+	public boolean alterarUsuario(Usuario usuario) {
+		
+		return daoUsuario.alterarUsuario(usuario);
+	}
 
 }

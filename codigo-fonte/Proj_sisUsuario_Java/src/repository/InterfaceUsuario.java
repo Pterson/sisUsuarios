@@ -11,5 +11,9 @@ public interface InterfaceUsuario {
 	public List<Usuario> retornaUsuarios();
 	
 	public Usuario buscarUsuario(String matricula);
+	
+	public boolean deletarUsuario(Usuario usuario);
+	
+	public boolean alterarUsuario(Usuario usuario);
 
 }
